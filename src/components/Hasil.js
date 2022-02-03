@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, ListGroup } from "react-bootstrap";
+import { Badge, Col, ListGroup, Row } from "react-bootstrap";
 
 export default class Hasil extends Component {
   render() {
@@ -13,7 +13,26 @@ export default class Hasil extends Component {
         {keranjangs.length !== 0 && (
           <ListGroup variant="flush">
             {keranjangs.map((menuKeranjang) => (
-              <ListGroup.Item>{menuKeranjang.product.nama}</ListGroup.Item>
+              <ListGroup.Item>
+                <Row>
+                  <Col xs={2}>
+                    <h4>
+                      <Badge pill variant="success">
+                        {menuKeranjang.jumlah}
+                      </Badge>
+                    </h4>
+                  </Col>
+                  <Col>
+                    <h5>{menuKeranjang.product.nama}</h5>
+                    <p>Rp. {menuKeranjang.product.harga}</p>
+                  </Col>
+                  <Col>
+                    <strong className="float-right">
+                      Rp. {menuKeranjang.total_harga}
+                    </strong>
+                  </Col>
+                </Row>
+              </ListGroup.Item>
             ))}
           </ListGroup>
         )}

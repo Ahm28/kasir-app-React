@@ -30,12 +30,26 @@ export default class App extends Component {
     axios
       .get(`${API_URL}keranjangs`)
       .then((res) => {
-        const keranjang = res.data;
-        this.setState({ keranjang });
+        const keranjangs = res.data;
+        this.setState({ keranjangs });
       })
       .catch((err) => {
         console.log(err);
       });
+  }
+
+  componentDidUpdate(prevState) {
+    if (this.state.keranjangs !== prevState.keranjangs) {
+      axios
+        .get(`${API_URL}keranjangs`)
+        .then((res) => {
+          const keranjangs = res.data;
+          this.setState({ keranjangs });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }
 
   changeCategory = (value) => {
